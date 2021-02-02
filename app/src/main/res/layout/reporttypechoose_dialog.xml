@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/write"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#156dd8">
+
+        <ImageView
+            android:id="@+id/reporttypechoose_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="选择问题类型"
+            android:textColor="@color/write"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <CheckBox
+                android:id="@+id/reportType1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在落实“三大攻坚战”（精准脱贫、人居环境治理、防范化解重大风险）和社会保障、支农惠农、低保五保、救灾救济等相关政策、措施不到位的问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在落实党中央及省、市、县委重大决策部署和县委政府中心、重点工作（如“三治三零”、网格化治理、五地一产）不到位、不及时的问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在权力运行不规范、民主决策不落实、程序执行有漏洞、办事不公开不透明等问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在党员干部涉黑涉恶、利作家族宗族势力把持基层政权、插手村级事务、垄断集体资源、侵吞集体资产、干扰破坏选举或横行乡里、欺压百姓等侵害群众利益和安全的问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在项目建设、集体资源资产资金监管不到位或涉及党员干部涉及滥用职权、暗箱操作、职务侵占、利益输送、行贿受贿等问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在党员、干部违反“四风”和中央八项规定精神方面的问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在村、支两委干部、小组长、网格员或其他行使公权力的人员在社会保障、政策扶持、救灾救济款物分配、发放中优亲厚友、截留私分、虚报冒领、挤占挪用、骗取套取、贪污侵占、克扣延发等问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在村、支两委干部、小组长、网格员或其他行使公权力的人员服务群众意识淡薄、工作作风粗暴、吃拿卡要等方面问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="本村是否存在对巡察整改不重视、虚假整改、应改未改、改不到位、反弹回潮等问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="其他" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+
+            <CheckBox
+                android:id="@+id/reportType11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="暂未发现有价值的问题线索" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f6f6f6" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/reportType_ok"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shp_taskwaitbutton"
+        android:text="确 定"
+        android:textColor="@color/write"
+        android:textSize="16sp" />
+</LinearLayout>

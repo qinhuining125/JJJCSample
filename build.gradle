@@ -1,0 +1,59 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+//        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.2.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    //Retrofit2最低支持android 2.3 和java 7
+    retrofitVersion = '2.1.0'
+
+    //okhttp3
+    okhttpVersion = '3.4.1'
+
+    //retrofit2:converter-gson
+    convertergsonVersion = '2.1.0'
+    //retrofit2:adapter-rxjava
+    adapterrxjavaVersion = '2.1.0'
+
+    //rxjava, rxandroid
+    rxjavaVersion = '1.2.0'
+    rxandroidVersion = '1.2.1'
+
+    //butterknife
+    butterknifeVersion = '8.4.0'
+
+    //控制65546方法
+    multidexVersion = '1.0.3'
+}
+

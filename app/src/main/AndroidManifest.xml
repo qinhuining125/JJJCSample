@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="wgt.module.cn.com.wgt_sample"
+    android:versionCode="10"
+    android:versionName="v1.9">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="com.miui.whetstone.permission.ACCESS_PROVIDER"/>
+    <!-- 调用相机权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".app.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
+        <activity android:name=".changepassword.ChangePassWordActivity"></activity>
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="${LAUNCHER_MODE}" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.MainXunchaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.TaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".suggest.SuggestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".report.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.TaskMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".suggest.SuggestMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".report.ReportMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".report.NewReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.PersonActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".xuncha.XunchaActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".xuncha.XunchaMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".task.FullNewTask" />
+        <activity
+            android:name=".jubao.JubaoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jubao.JubaoMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jubao.JubaoBaixingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jubao.NewjubaiBaixingActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#156dd8</color>
+    <color name="colorPrimaryDark">#156dd8</color>
+    <color name="colorAccent">#156dd8</color>
+
+    <color name="afharfwrite">#90FFFFFF</color>
+    <color name="write">#FFFFFF</color>
+    <color name="black">#333333</color>
+
+    <color name="dark_backgroubd">#F4F6F5</color>
+    <color name="task_type_wait">#ff0238</color>
+    <color name="task_type_work">#ffa102</color>
+    <color name="task_type_finish">#07c55c</color>
+    <color name="task_type_zhuanban">#6c42e5</color>
+    <color name="task_type_zhixiao">#08c5d1</color>
+    <color name="uploadColor">#1e80ff</color>
+
+
+</resources>

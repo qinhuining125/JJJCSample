@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+<LinearLayout android:id="@+id/choose_method_first_visit_layout_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#156dd8">
+
+        <ImageView
+            android:id="@+id/task_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="百姓举报"
+            android:textColor="@color/write"
+            android:textSize="18sp" />
+    </RelativeLayout>
+        <!--输入框部分-->
+    <TextView
+        android:id="@+id/xuncha_name"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_gravity="bottom"
+        android:text="巡查轮次："
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        >
+        <!--巡查轮次展示-->
+
+        <TextView
+            android:id="@+id/task_message_phone"
+            android:layout_width="100dp"
+            android:layout_height="80px"
+            android:layout_gravity="center"
+            android:text="*联系方式:"
+            android:textSize="15sp"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            />
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginRight="20dp"
+            android:hint="请输入"
+            android:textSize="15sp"
+            android:elegantTextHeight="true"
+            android:textColorHint="#717171"
+            android:paddingLeft="20px"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:layout_toRightOf="@+id/task_message_phone"
+            android:background="@drawable/shp_newtask_editbg"
+            />
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:id="@+id/task_message_bjperson"
+                android:layout_width="100dp"
+                android:layout_height="80px"
+                android:layout_gravity="bottom"
+                android:text="*举报对象:"
+                android:textSize="15sp"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                />
+            <EditText
+                android:id="@+id/jubao_object"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginRight="20dp"
+                android:hint="请输入"
+                android:textSize="15sp"
+                android:elegantTextHeight="true"
+                android:textColorHint="#717171"
+                android:paddingLeft="20px"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_toRightOf="@+id/task_message_bjperson"
+                android:background="@drawable/shp_newtask_editbg"
+                />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/write"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="*举报详情:"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/write"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/jubao_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/shp_newtask_editbg"
+            android:gravity="top"
+            android:hint="请输入举报内容"
+            android:minLines="8"
+            android:padding="10dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/write"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="图片上传："
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/image_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shp_suggestlisttimebg"
+            android:text="选择图片"
+            android:textColor="#156dd8"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/image_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shp_suggestlisttimebg"
+            android:text="上传图片"
+            android:textColor="#156dd8"
+            android:textSize="15sp"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_image_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="visible"
+        />
+
+    <Button
+        android:id="@+id/newreport_ok"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/shp_taskwaitbutton"
+        android:text="提 交"
+        android:textColor="@color/write"
+        android:textSize="16sp"
+        android:layout_marginBottom="50dp"
+        />
+
+</LinearLayout>
+</ScrollView>

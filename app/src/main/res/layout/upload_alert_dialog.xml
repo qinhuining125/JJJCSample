@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shp_yuanjiaoupload"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/upload_title"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="监测到新版本v1.1  当前版本v1.0"
+            android:textColor="@color/uploadColor"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.widget.QMUIProgressBar
+            android:id="@+id/upload_circleProgressBar"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:layout_below="@+id/upload_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/uploadColor"
+            android:textSize="22sp"
+            android:tooltipText="123"
+            app:qmui_background_color="@color/qmui_config_color_gray_8"
+            app:qmui_progress_color="#E84D84"
+            app:qmui_stroke_width="5dp"
+            app:qmui_type="type_circle" />
+
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/upload_circleProgressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shp_yuanjiaouploadbutton"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="开始下载"
+            android:textColor="@color/qmui_config_color_white"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

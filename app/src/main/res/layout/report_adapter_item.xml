@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shp_listbg"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/report_adapter_person"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/report_adapter_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shp_taskwait"
+                android:text="待接受"
+                android:textColor="@color/task_type_wait" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/report_adapter_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="15dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#666666" />
+        <TextView
+            android:id="@+id/report_adapter_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="#999999" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:gravity="fill_horizontal"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/task_adapter_zx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shp_taskzhixiaobutton"
+                android:text="知晓"
+                android:textColor="@color/write"
+                android:textSize="16sp"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/task_adapter_zb"
+                android:layout_toRightOf="@+id/task_adapter_zx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shp_taskzhuanbanbutton"
+                android:text="转办"
+                android:textColor="@color/write"
+                android:textSize="16sp"
+                android:visibility="gone" />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/report_adapter_js"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shp_taskwaitbutton"
+                android:text="接受"
+                android:textColor="@color/write"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+
+            <TextView
+
+                android:id="@+id/report_adapter_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shp_taskfinishbutton"
+                android:text="情况反馈"
+                android:textColor="@color/write"
+                android:textSize="16sp"
+                android:layout_alignParentRight="true"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
