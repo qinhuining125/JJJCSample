@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_name_calendar">日历</string>
+    <string name="permission_name_camera">相机</string>
+    <string name="permission_name_contacts">通讯录</string>
+    <string name="permission_name_location">位置信息</string>
+    <string name="permission_name_microphone">麦克风</string>
+    <string name="permission_name_phone">电话</string>
+    <string name="permission_name_sensors">身体传感器</string>
+    <string name="permission_name_sms">短信</string>
+    <string name="permission_name_storage">存储空间</string>
+    <string name="support_recycler_click_load_more">点击加载更多</string>
+    <string name="support_recycler_data_empty">暂时没有数据</string>
+    <string name="support_recycler_load_error">加载出错啦，请稍后重试</string>
+    <string name="support_recycler_load_more_message">正在加载更多数据，请稍后</string>
+    <string name="support_recycler_more_not">没有更多数据啦</string>
+</resources>

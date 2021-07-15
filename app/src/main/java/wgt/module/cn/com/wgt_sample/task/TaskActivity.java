@@ -180,6 +180,7 @@ public class TaskActivity extends AppCompatActivity implements TaskContract.View
         onClickListen();
         AppUtils.getPermission(this);
         if (savedInstanceState != null) {
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.prm = savedInstanceState.getInt("prm");
             BaseApplication.token = savedInstanceState.getString("token");

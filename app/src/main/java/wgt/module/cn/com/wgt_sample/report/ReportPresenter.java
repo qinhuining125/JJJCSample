@@ -1,10 +1,14 @@
 package wgt.module.cn.com.wgt_sample.report;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.io.File;
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import rx.Subscriber;
 import rx.Subscription;
@@ -17,6 +21,7 @@ import wgt.module.cn.com.wgt_sample.entity.NewReportEntity;
 import wgt.module.cn.com.wgt_sample.entity.PersonEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportStateEntity;
+import wgt.module.cn.com.wgt_sample.entity.ReportpersonEntity;
 import wgt.module.cn.com.wgt_sample.utils.AppUtils;
 import wgt.module.cn.com.wgt_sample.utils.HttpResult;
 import wgt.module.cn.com.wgt_sample.utils.HttpResultList;
@@ -401,7 +406,7 @@ public class ReportPresenter implements ReportContract.Presenter {
     public void getReportType(String roldId) {
         Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
                 .create(ApiInterface.class)
-                .getReportType(roldId)
+                .getReportType(roldId, BaseApplication.userid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<HttpResultList<NewReportEntity>>() {
@@ -451,6 +456,212 @@ public class ReportPresenter implements ReportContract.Presenter {
                     public void onNext(HttpResult<ReportStateEntity> httpResult) {
                         if (httpResult.isSuccess()) {
                             mView.setState(httpResult.getResult());
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
+    }
+
+
+    @Override
+    public void getReportPerson(final int type, final String id, final String text) {
+        Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
+                .create(ApiInterface.class)
+                .getReportPerson(BaseApplication.prm == 1003 ? 0 : 1)// 如果是1003，type=0,否则为1
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HttpResultList<ReportpersonEntity>>() {
+                    @Override
+                    public void onCompleted() {
+                        mView.dataDialogDissmis();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof SocketTimeoutException) {
+                            mView.ERROR("获取指派人员失败，请确认网络环境后重试");
+                        } else {
+                            mView.ERROR("获取指派人员失败");
+                        }
+                    }
+                    @Override
+                    public void onNext(HttpResultList<ReportpersonEntity> httpResult) {
+                        if (httpResult.isSuccess()) {
+                            if (type == 0) {//当前登录系统的用户是1003，乡镇纪委管理员，乡镇纪委管理员管理员进行转办的话，只能选择到村干部和站所
+                                mView.setPersonZB(httpResult.getResult(), id, text);
+                            } else {//当前登录系统的用户是1012，村干部，村干部进行转办的话，只能选择到乡镇纪委管理员和站所
+                                mView.setPersonZB(httpResult.getResult(), id, text);
+                            }
+                        } else {
+                            mView.ERROR(httpResult.getMessage());
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
+
+    }
+
+    //图片
+    @Override
+    public void uploadImages(List<File> fileList) {
+        final MultipartBody.Builder mbody=new MultipartBody.Builder().setType(MultipartBody.FORM);
+        int i=0;
+        for(File file:fileList){
+            if(file.exists()){
+//                Log.i("imageName:",file.getName());//经过测试，此处的名称不能相同，如果相同，只能保存最后一个图片，不知道那些同名的大神是怎么成功保存图片的。
+                mbody.addFormDataPart("file1",file.getName(),RequestBody.create(MediaType.parse("image/*"),file));
+                i++;
+            }
+        }
+        List<MultipartBody.Part> parts=mbody.build().parts();
+        Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
+                .create(ApiInterface.class)
+                .uploadImages(parts)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HttpResultList<String>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        if (e instanceof SocketTimeoutException) {
+                            mView.ERROR("上传图片失败，请确认网络环境后重试");
+                        } else {
+                            Log.getStackTraceString(e);
+                            mView.ERROR("上传图片失败");
+                        }
+                    }
+                    @Override
+                    public void onNext(HttpResultList<String> result) {
+//                        Log.e("上传图片完毕-----",result.getResult().toString());
+                        if (result.isSuccess()){
+                            mAddView.setUploadImageListFromServer(result.getResult());
+
+                        }
+
+                    }
+                });
+        mSubscriptions.add(subscription);
+    }
+
+    //语音
+    @Override
+    public void uploadAudios(List<File> fileList) {
+        final MultipartBody.Builder mbody=new MultipartBody.Builder().setType(MultipartBody.FORM);
+        int i=0;
+        for(File file:fileList){
+            if(file.exists()){
+//                Log.i("imageName:",file.getName());//经过测试，此处的名称不能相同，如果相同，只能保存最后一个图片，不知道那些同名的大神是怎么成功保存图片的。
+                mbody.addFormDataPart("fileAudio1",file.getName(),RequestBody.create(MediaType.parse("audio/*"),file));
+                i++;
+            }
+        }
+        List<MultipartBody.Part> parts=mbody.build().parts();
+        Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
+                .create(ApiInterface.class)
+                .uploadAudios(parts)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HttpResultList<String>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        if (e instanceof SocketTimeoutException) {
+                            mView.ERROR("上传语音失败，请确认网络环境后重试");
+                        } else {
+                            Log.getStackTraceString(e);
+                            mView.ERROR("上传语音失败");
+                        }
+                    }
+                    @Override
+                    public void onNext(HttpResultList<String> result) {
+                        if (result.isSuccess()){
+                            mAddView.setUploadAudioListFromServer(result.getResult());
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
+    }
+
+    //视频
+    @Override
+    public void uploadVideos(List<File> fileList) {
+        final MultipartBody.Builder mbody=new MultipartBody.Builder().setType(MultipartBody.FORM);
+        int i=0;
+        for(File file:fileList){
+            if(file.exists()){
+//                Log.i("imageName:",file.getName());//经过测试，此处的名称不能相同，如果相同，只能保存最后一个图片，不知道那些同名的大神是怎么成功保存图片的。
+                mbody.addFormDataPart("fileVideo1",file.getName(),RequestBody.create(MediaType.parse("video/*"),file));
+                i++;
+            }
+        }
+        List<MultipartBody.Part> parts=mbody.build().parts();
+        Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
+                .create(ApiInterface.class)
+                .uploadVideos(parts)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HttpResultList<String>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        if (e instanceof SocketTimeoutException) {
+                            mView.ERROR("上传视频失败，请确认网络环境后重试");
+                        } else {
+                            Log.getStackTraceString(e);
+                            mView.ERROR("上传视频失败");
+                        }
+                    }
+                    @Override
+                    public void onNext(HttpResultList<String> result) {
+                        if (result.isSuccess()){
+                            mAddView.setUploadVideoListFromServer(result.getResult());
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
+    }
+
+
+
+    @Override
+    public void getMessagePerson(final String id, final String text) {
+        Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
+                .create(ApiInterface.class)
+                .getReportPerson(BaseApplication.prm == 1003 ? 0 : 1)// 如果是1003，type=0,否则为1
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HttpResultList<ReportpersonEntity>>() {
+                    @Override
+                    public void onCompleted() {
+                        mMessageView.dataDialogDissmis();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("获取指派人员失败","e----");
+                        e.printStackTrace();
+                        if (e instanceof SocketTimeoutException) {
+                            mMessageView.ERROR("获取指派人员失败，请确认网络环境后重试");
+                        } else {
+                            mMessageView.ERROR("获取指派人员失败");
+                        }
+                    }
+                    @Override
+                    public void onNext(HttpResultList<ReportpersonEntity> httpResult) {
+                        Log.e("获取指派人员成功",httpResult.getResult().toString());
+                        if (httpResult.isSuccess()) {
+                            mMessageView.setPersonMessageZB(httpResult.getResult(), id, text);
+                        } else {
+                            mMessageView.ERROR(httpResult.getMessage());
                         }
                     }
                 });

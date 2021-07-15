@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +44,32 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <CheckBox
+                    android:id="@+id/newreport_tovillagemgr"
+                    android:layout_width="174dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="30dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:tag=""
+                    android:text="上报给村干部" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#f6f6f6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal">
 
@@ -71,57 +96,251 @@
                 android:id="@+id/newreport_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/problem_intro"
-            android:layout_below="@+id/intro"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/write"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="问题描述:"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/problem_intro"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/intro"
+                android:layout_marginTop="20dp"
+                android:background="@color/write"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="问题描述:"
+                android:textSize="15sp" />
 
-        <LinearLayout
-            android:layout_below="@+id/problem_intro"
-            android:id="@+id/report_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/write"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/newreport_text"
+            <LinearLayout
+                android:id="@+id/report_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/shp_newtask_editbg"
-                android:gravity="top"
-                android:hint="请输入问题描述（选填）"
-                android:minLines="10"
-                android:padding="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/problem_intro"
+                android:background="@color/write"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/newreport_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/shp_newtask_editbg"
+                    android:gravity="top"
+                    android:hint="请输入问题描述（选填）"
+                    android:minLines="10"
+                    android:padding="10dp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@color/write"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/write"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="图片上传："
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/image_choose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shp_suggestlisttimebg"
+                        android:text="选择图片"
+                        android:textColor="#156dd8"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/image_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/shp_suggestlisttimebg"
+                        android:text="上传图片"
+                        android:textColor="#156dd8"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview_image_upload1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@color/write"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/write"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="语音上传："
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/audio_choose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shp_suggestlisttimebg"
+                        android:text="选择语音"
+                        android:textColor="#156dd8"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/audio_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/shp_suggestlisttimebg"
+                        android:text="上传语音"
+                        android:textColor="#156dd8"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview_audio_upload1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@color/write"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/write"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="视频上传："
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/video_choose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shp_suggestlisttimebg"
+                        android:text="选择视频"
+                        android:textColor="#156dd8"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/video_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/shp_suggestlisttimebg"
+                        android:text="上传视频"
+                        android:textColor="#156dd8"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview_video_upload1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/newreport_ok"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/report_edit"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/shp_taskwaitbutton"
+                android:text="提 交"
+                android:textColor="@color/write"
+                android:textSize="16sp" />
+
         </LinearLayout>
 
-        <Button
-            android:layout_below="@+id/report_edit"
-            android:id="@+id/newreport_ok"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/shp_taskwaitbutton"
-            android:text="提 交"
-            android:textColor="@color/write"
-            android:layout_marginBottom="50dp"
-            android:textSize="16sp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </RelativeLayout>
 </ScrollView>
+
 
 

@@ -180,6 +180,7 @@ public class JubaoActivity extends AppCompatActivity implements JubaoContract.Vi
         onClickListen();
 
         if (savedInstanceState != null) {
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.prm = savedInstanceState.getInt("prm");
             BaseApplication.token = savedInstanceState.getString("token");

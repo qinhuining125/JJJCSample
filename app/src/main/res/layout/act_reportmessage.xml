@@ -92,6 +92,128 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
+
+
+                <!-- 问题上报详情图片 -->
+                <LinearLayout
+                    android:id="@+id/layout_images1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/title_report_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/write"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="20dp"
+                            android:text="问题详情图"
+                            android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="(点击查看大图):"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/reportmessage_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:layout_marginTop="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_audio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/title_report_audio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:background="@color/write"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="20dp"
+                            android:text="问题详情语音"
+                            android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="(点击播放语音):"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/reportmessage_audio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:layout_marginTop="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                />
+                </LinearLayout>
+
+               <LinearLayout
+                    android:id="@+id/layout_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                   <LinearLayout
+                       android:id="@+id/title_report_video"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       >
+                       <TextView
+                           android:layout_width="match_parent"
+                           android:layout_height="40dp"
+                           android:background="@color/write"
+                           android:gravity="center_vertical"
+                           android:paddingLeft="20dp"
+                           android:text="问题详情视频"
+                           android:textSize="15sp" />
+                       <TextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:paddingLeft="10dp"
+                           android:gravity="center_vertical"
+                           android:text="(点击查看视频):"
+                           android:textColor="@color/black"
+                           android:textSize="12sp" />
+                   </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/reportmessage_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:layout_marginTop="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        />
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -172,7 +294,6 @@
                             android:textColor="@color/write"
                             android:textSize="16sp"
                             android:visibility="gone" />
-
 
                     </RelativeLayout>
                 </LinearLayout>

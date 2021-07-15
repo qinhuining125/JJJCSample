@@ -1,6 +1,7 @@
 package wgt.module.cn.com.wgt_sample.adapter;
 
 import android.content.Context;
+import android.media.SoundPool;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class ImageAdapter extends BaseAdapter<ImageAdapter.ViewHolder> {
     }
 
     private List<MultiplexImage> imageList;
+
     private Context context;
     private OnRecyclerItemClickListener itemClickListener;
 
@@ -56,7 +58,7 @@ public class ImageAdapter extends BaseAdapter<ImageAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,  int i) {
-//
+
         GlideApp.with(context).load(imageList.get(i).getTPath()).centerCrop().error(R.drawable.error).into(viewHolder.photoView);
     }
 

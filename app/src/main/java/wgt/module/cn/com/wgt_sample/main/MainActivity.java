@@ -96,8 +96,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(BaseApplication.prm>=1007){
-            getJubaoState();
-            getXunchaState();
+            if(BaseApplication.prm == 1012
+                    || (BaseApplication.prm >=3000  && BaseApplication.prm<=3999)){
+                getReportState();
+            }else {
+                getJubaoState();
+                getXunchaState();
+            }
         } else if(BaseApplication.prm==1001){
             getReportState();
             getTaskState();
@@ -114,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
             getTaskState();
         }
 
-
-
     }
 
     @Override
@@ -130,17 +133,26 @@ public class MainActivity extends AppCompatActivity {
             BaseApplication.token = savedInstanceState.getString("token");
             BaseApplication.username = savedInstanceState.getString("username");
             BaseApplication.userid = savedInstanceState.getString("userid");
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
         }
         //11.10首页权限设置。
             if ( BaseApplication.prm >= 1008){
-                layoutReport.setVisibility(View.GONE);
-                layoutTask.setVisibility(View.GONE);
-                layoutuggest.setVisibility(View.GONE);
-                layoutXunchaWork.setVisibility(View.VISIBLE);
-                viewOnePlaceHolder.setVisibility(View.VISIBLE);
-
-            } else if((BaseApplication.prm>=1001&&BaseApplication.prm<=1003)||BaseApplication.prm==1007){
+                if(BaseApplication.prm == 1012
+                        || (BaseApplication.prm >=3000  && BaseApplication.prm<=3999)){
+                    layoutReport.setVisibility(View.VISIBLE);
+                    layoutTask.setVisibility(View.GONE);
+                    layoutuggest.setVisibility(View.GONE);
+                    layoutXunchaWork.setVisibility(View.GONE);
+                    viewOnePlaceHolder.setVisibility(View.VISIBLE);
+                }else {
+                    layoutReport.setVisibility(View.GONE);
+                    layoutTask.setVisibility(View.GONE);
+                    layoutuggest.setVisibility(View.GONE);
+                    layoutXunchaWork.setVisibility(View.VISIBLE);
+                    viewOnePlaceHolder.setVisibility(View.VISIBLE);
+                }
+            } else if((BaseApplication.prm>=1001 && BaseApplication.prm<=1003) || BaseApplication.prm==1007){
                 viewOnePlaceHolder.setVisibility(View.VISIBLE);
             }else{
                 layoutXunchaWork.setVisibility(View.GONE);

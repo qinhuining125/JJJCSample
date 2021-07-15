@@ -99,6 +99,7 @@ public class SuggestActivity extends AppCompatActivity implements SuggestContrac
 
         // 检查是否正在重新创建一个以前销毁的实例
         if (savedInstanceState != null) {
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.prm = savedInstanceState.getInt("prm");
             BaseApplication.token = savedInstanceState.getString("token");

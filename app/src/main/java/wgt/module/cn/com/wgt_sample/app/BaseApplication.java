@@ -26,8 +26,10 @@ public class BaseApplication extends Application {
 //    public static String baseURL = "http://192.168.32.240:81/";
 
 //    public static String baseURL = "http://192.168.32.4/";
+//    public static String baseURL = "http://183.201.252.83:49012/";
     public static String baseURL = "http://183.201.252.83:49012/";
-    public static String baseWebViewUrl = "http://192.168.32.201:81/reporting/report.html";
+//    public static String baseWebViewUrl = "http://192.168.32.201:81/reporting/report.html";
+    public static String baseWebViewUrl = "http://183.201.252.83:49012/reporting/report.html";
 
     private static BaseApplication INSTANCE;
     //用来存储所有创建的activity

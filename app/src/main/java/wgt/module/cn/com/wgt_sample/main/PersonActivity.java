@@ -35,6 +35,7 @@ public class PersonActivity extends AppCompatActivity {
             BaseApplication.username = savedInstanceState.getString("username");
             BaseApplication.userid = savedInstanceState.getString("userid");
             username.setText(BaseApplication.username);
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
         }
     }

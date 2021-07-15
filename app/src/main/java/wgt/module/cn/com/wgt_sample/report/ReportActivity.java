@@ -1,6 +1,8 @@
 package wgt.module.cn.com.wgt_sample.report;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +29,7 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.yanzhenjie.recyclerview.OnItemClickListener;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +47,10 @@ import wgt.module.cn.com.wgt_sample.entity.ReportFinishRequestEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportListRequestEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportStateEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportWorkRequestEntity;
+import wgt.module.cn.com.wgt_sample.entity.ReportZBRequestEntity;
+import wgt.module.cn.com.wgt_sample.entity.ReportpersonEntity;
 import wgt.module.cn.com.wgt_sample.task.FullTaskFinish;
+import wgt.module.cn.com.wgt_sample.utils.FileProviderUtils;
 import wgt.module.cn.com.wgt_sample.utils.MyDrawerLayout;
 import wgt.module.cn.com.wgt_sample.utils.MyLoadMoreView;
 
@@ -110,6 +117,23 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     private List<PersonEntity> personList;
     private List<List<PersonEntity.PersonSonEntity>> personSonList;
 
+
+
+    private NewReportActivity newReport;
+
+    List<String> imageList = new ArrayList<>();
+    List<File> fileList = new ArrayList<>();
+
+    List<String> audioList = new ArrayList<>();
+    List<File> fileAudioList = new ArrayList<>();
+
+    List<String> videoList = new ArrayList<>();
+    List<File> fileVideoList = new ArrayList<>();
+
+
+    // 指派框
+    private FullZBReport zpTask;
+
     /**
      * wait刷新。
      */
@@ -160,6 +184,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         onClickListen();
 
         if (savedInstanceState != null) {
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.prm = savedInstanceState.getInt("prm");
             BaseApplication.token = savedInstanceState.getString("token");
@@ -222,9 +247,20 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
             }
 
             @Override
-            public void ZB(String id) {
-                spDialog.show();
-                mPresenter.getReportZB(new Gson().toJson(new ReportWorkRequestEntity(id)));
+            public void ZB(String id,String text) {
+//                spDialog.show();
+//                mPresenter.getReportZB(new Gson().toJson(new ReportWorkRequestEntity(id)));
+
+                dataDialog.show();
+
+                if(BaseApplication.prm==1003){//乡镇纪委管理员管理员进行转办的话，只能选择到村干部和站所
+                    mPresenter.getReportPerson(0, id, text);
+                }else if(BaseApplication.prm==1012){//村干部进行转办的话，只能选择到乡镇纪委管理员管理员和站所
+                    mPresenter.getReportPerson(1, id, text);
+                }else{//其他角色不能转办，没有转办按钮
+                    //转办按钮隐藏
+                }
+
             }
 
             @Override
@@ -377,13 +413,111 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         reportline.setVisibility(View.VISIBLE);
     }
 
+    @Override//传给newtask服务器图片地址列表
+    public void setImageList(List<String> imageList) {
+        newReport.setUploadImageList(imageList);
+        Toast.makeText(this, "图片上传成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override//传给newtask服务器语音地址列表
+    public void setAudioList(List<String> audioList) {
+        newReport.setUploadAudioList(audioList);
+        Toast.makeText(this, "语音上传成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override//传给newtask服务器视频地址列表
+    public void setVideoList(List<String> videoList) {
+        newReport.setUploadVideoList(videoList);
+        Toast.makeText(this, "视频上传成功", Toast.LENGTH_SHORT).show();
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        imageList.clear();
+        fileList.clear();
+        audioList.clear();
+        fileAudioList.clear();
+        videoList.clear();
+        fileVideoList.clear();
+        Uri uri;
         if (requestCode == 101 && resultCode == RESULT_OK) {
             onRefrush();
         } else if (requestCode == 201 && resultCode == RESULT_OK) {
             onRefrush();
+        } else if (requestCode==1 && resultCode == RESULT_OK){
+            Log.e("Reportactresult----",data.toString());
+            ClipData imageNames = data.getClipData();
+            if (imageNames != null){
+                for (int i=0; i<imageNames.getItemCount(); i++){
+                    Uri imageUri = imageNames.getItemAt(i).getUri();
+                    imageList.add(imageUri.toString());
+                    String sPath1 = FileProviderUtils.getPath(this, imageUri);
+//                    fileList.add(FileProviderUtils.uri2File(this,imageUri));
+                    Log.e("sPath1-----",sPath1);
+                    Log.e("file-----",String.valueOf(new File(sPath1).exists()));
+                    fileList.add(new File(sPath1));
+                }
+//                Log.e("imageUri-----",imageList.toString());
+                newReport.setImageList(imageList);
+                newReport.setFileList(fileList);
+            } else {
+                uri = data.getData();
+                String sPath1 = FileProviderUtils.getPath(this, uri);
+                imageList.add(uri.toString());
+                fileList.add(new File(sPath1));
+                newReport.setImageList(imageList);
+                newReport.setFileList(fileList);
+            }
+
+        }else if (requestCode==2 && resultCode == RESULT_OK){
+            Log.e("NewReportActresult2----",data.toString());
+            ClipData audioNames = data.getClipData();
+            if (audioNames != null){
+                for (int i=0; i<audioNames.getItemCount(); i++){
+                    Uri audioUri = audioNames.getItemAt(i).getUri();
+                    audioList.add(audioUri.toString());
+                    String sPath1 = FileProviderUtils.getPath(this, audioUri);
+                    Log.e("sPath1--Audio-----",sPath1);
+                    Log.e("file---Audio-----",String.valueOf(new File(sPath1).exists()));
+                    fileAudioList.add(new File(sPath1));
+                }
+                newReport.setAudioList(audioList);
+                newReport.setFileAudioList(fileAudioList);
+            } else {
+                uri = data.getData();
+                String sPath1 = FileProviderUtils.getPath(this, uri);
+                audioList.add(uri.toString());
+                fileAudioList.add(new File(sPath1));
+                newReport.setAudioList(audioList);
+                newReport.setFileAudioList(fileAudioList);
+            }
+
+        }else if (requestCode==3 && resultCode == RESULT_OK){
+            Log.e("NewReportActresult3----",data.toString());
+            ClipData videoNames = data.getClipData();
+            if (videoNames != null){
+                for (int i=0; i<videoNames.getItemCount(); i++){
+                    Uri videoUri = videoNames.getItemAt(i).getUri();
+                    videoList.add(videoUri.toString());
+                    String sPath1 = FileProviderUtils.getPath(this, videoUri);
+                    Log.e("sPath1--Video-----",sPath1);
+                    Log.e("file---Video-----",String.valueOf(new File(sPath1).exists()));
+                    fileVideoList.add(new File(sPath1));
+                }
+                newReport.setVideoList(videoList);
+                newReport.setFileVideoList(fileVideoList);
+            } else {
+                uri = data.getData();
+                String sPath1 = FileProviderUtils.getPath(this, uri);
+                videoList.add(uri.toString());
+                fileVideoList.add(new File(sPath1));
+                newReport.setVideoList(videoList);
+                newReport.setFileVideoList(fileVideoList);
+            }
+
         }
     }
 
@@ -421,6 +555,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     public void setReportZB(boolean isSuccess) {
         if (isSuccess) {
             onRefrush();
+            zpTask.dismiss();
             Toast.makeText(this, "转办成功", Toast.LENGTH_SHORT).show();
         }
     }
@@ -451,6 +586,19 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         } else {
             reportWorkred.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void setPersonZB(List<ReportpersonEntity> dataList, final String id, String text) {
+        zpTask = new FullZBReport(this, text, dataList);
+        zpTask.show();
+        zpTask.setZPTask(new FullZBReport.ZPTask() {
+            @Override
+            public void zpTask(String roleId) {
+                spDialog.show();
+                mPresenter.getReportZB(new Gson().toJson(new ReportZBRequestEntity(id, Integer.parseInt(roleId))));
+            }
+        });
     }
 
     @Override

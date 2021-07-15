@@ -63,6 +63,7 @@ public class MainXunchaActivity extends AppCompatActivity {
             BaseApplication.token = savedInstanceState.getString("token");
             BaseApplication.username = savedInstanceState.getString("username");
             BaseApplication.userid = savedInstanceState.getString("userid");
+//            BaseApplication.baseURL = "http://183.201.252.83:49012/";
             BaseApplication.baseURL = "http://183.201.252.83:49012/";
         }
         //11.10权限设置。

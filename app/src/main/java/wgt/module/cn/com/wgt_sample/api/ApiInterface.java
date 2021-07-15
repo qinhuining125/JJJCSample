@@ -19,6 +19,7 @@ import wgt.module.cn.com.wgt_sample.entity.NewReportEntity;
 import wgt.module.cn.com.wgt_sample.entity.PersonEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportEntity;
 import wgt.module.cn.com.wgt_sample.entity.ReportStateEntity;
+import wgt.module.cn.com.wgt_sample.entity.ReportpersonEntity;
 import wgt.module.cn.com.wgt_sample.entity.SuggestEntity;
 import wgt.module.cn.com.wgt_sample.entity.TaskEntity;
 import wgt.module.cn.com.wgt_sample.entity.TaskStateEntity;
@@ -51,7 +52,7 @@ public interface ApiInterface {
     // 上报类型 。
     @Headers({"Content-Type: application/json"})
     @GET("api/reportType/list.json")
-    Observable<HttpResultList<NewReportEntity>> getReportType(@Query("roldId")  String roldId);
+    Observable<HttpResultList<NewReportEntity>> getReportType(@Query("roldId")  String roldId, @Query("userId")  String userId);
     // 上报 。
     @Headers({"Content-Type: application/json"})
     @POST("api/clueReport/saveData.json")
@@ -84,6 +85,9 @@ public interface ApiInterface {
     @GET("api/clueReport/state.json")
     Observable<HttpResult<ReportStateEntity>> getReportState();
 
+    // 获取问题上报可以转办的人员角色()
+    @GET("api/clueReport/reportZBRoleList.json")
+    Observable<HttpResultList<ReportpersonEntity>> getReportPerson(@Query("type")  int type);
 
     /**
      * 指派任务。
@@ -129,9 +133,20 @@ public interface ApiInterface {
 //    @POST("web/DemoImageController/uploadMult")
 //    Observable<HttpResult<Boolean>> uploadImages(@Body RequestBody requestBody);
 
+    //图片
     @Multipart
     @POST("web/DemoImageController/appUploadMult")
     Observable<HttpResultList<String>> uploadImages(@Part List<MultipartBody.Part> partLis);
+
+    //语音
+    @Multipart
+    @POST("web/DemoAudioController/appUploadMult")
+    Observable<HttpResultList<String>> uploadAudios(@Part List<MultipartBody.Part> partLis);
+
+    //视频
+    @Multipart
+    @POST("web/DemoVideoController/appUploadMult")
+    Observable<HttpResultList<String>> uploadVideos(@Part List<MultipartBody.Part> partLis);
 
 
     // 获取版本 。

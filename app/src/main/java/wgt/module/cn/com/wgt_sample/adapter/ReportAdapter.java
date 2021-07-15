@@ -51,12 +51,17 @@ public class ReportAdapter extends BaseAdapter<ReportAdapter.ViewHolder> {
         switch (data.getState()) {
             case 0:
                 holder.reportAdapterType.setText("待处理");
-                if (BaseApplication.prm == 1003 || BaseApplication.prm == 1004 || BaseApplication.prm == 1005) {
+                if (BaseApplication.prm == 1003 || BaseApplication.prm == 1004 || BaseApplication.prm == 1005 || BaseApplication.prm == 1012) {
                     holder.reportAdapterJs.setVisibility(View.VISIBLE);
                     holder.reportAdapterZhixiao.setVisibility(View.VISIBLE);
                     holder.reportAdapterZhuanban.setVisibility(View.VISIBLE);
                     holder.reportAdapterFinish.setVisibility(View.GONE);
-                } else {
+                } else if( (BaseApplication.prm >=3000  && BaseApplication.prm<=3999)){
+                    holder.reportAdapterZhixiao.setVisibility(View.GONE);
+                    holder.reportAdapterZhuanban.setVisibility(View.GONE);
+                    holder.reportAdapterJs.setVisibility(View.VISIBLE);
+                    holder.reportAdapterFinish.setVisibility(View.GONE);
+                }else {
                     holder.reportAdapterZhixiao.setVisibility(View.GONE);
                     holder.reportAdapterZhuanban.setVisibility(View.GONE);
                     holder.reportAdapterJs.setVisibility(View.GONE);
@@ -132,7 +137,7 @@ public class ReportAdapter extends BaseAdapter<ReportAdapter.ViewHolder> {
         holder.reportAdapterZhuanban.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sp.ZB(data.getId());
+                sp.ZB(data.getId(),data.getClueDescribe());
             }
         });
         holder.reportAdapterFinish.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +159,7 @@ public class ReportAdapter extends BaseAdapter<ReportAdapter.ViewHolder> {
 
     public interface SP {
         void JS(String id);
-        void ZB(String id);
+        void ZB(String id,String text);
         void ZX(String id);
         void Finish(String id);
     }

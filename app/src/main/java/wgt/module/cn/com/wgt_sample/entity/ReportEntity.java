@@ -46,6 +46,8 @@ public class ReportEntity {
     public class ReportSonEntity {
         // 问题上报内容
         private String clueDescribe;
+        // 是否上报给村干部
+        private boolean toVillageMgr;
         // 问题上报编号
         private String clueNo;
         private long createTime;
@@ -62,6 +64,37 @@ public class ReportEntity {
         // 获取上报类型。
         private List<Dto> dtoList;
         private List<ReportFlowsEntity> flows;
+
+        public List<String> imgApp;
+
+        public List<String> audioApp;
+
+        public List<String> videoApp;
+
+
+        public List<String> getImgApp() {
+            return imgApp;
+        }
+
+        public void setImgApp(List<String> imgApp) {
+            this.imgApp = imgApp;
+        }
+
+        public List<String> getAudioApp() {
+            return audioApp;
+        }
+
+        public void setAudioApp(List<String> audioApp) {
+            this.audioApp = audioApp;
+        }
+
+        public List<String> getVideoApp() {
+            return videoApp;
+        }
+
+        public void setVideoApp(List<String> videoApp) {
+            this.videoApp = videoApp;
+        }
 
         public List<Dto> getDtoList() {
             return dtoList;
@@ -126,6 +159,14 @@ public class ReportEntity {
 
         public void setClueDescribe(String clueDescribe) {
             this.clueDescribe = clueDescribe;
+        }
+
+        public boolean isToVillageMgr() {
+            return toVillageMgr;
+        }
+
+        public void setToVillageMgr(boolean toVillageMgr) {
+            this.toVillageMgr = toVillageMgr;
         }
 
         public long getCreateTime() {
