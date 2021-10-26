@@ -467,7 +467,10 @@ public class ReportPresenter implements ReportContract.Presenter {
     public void getReportPerson(final int type, final String id, final String text) {
         Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
                 .create(ApiInterface.class)
-                .getReportPerson(BaseApplication.prm == 1003 ? 0 : 1)// 如果是1003，type=0,否则为1
+                // 如果是roleId = 1003，type=0;(1003是乡镇纪委管理员，转办给村干部或者站所)
+                // roleId = 1012, type=1;(1012是村干部/社区书记，转办给乡镇纪委管理员或者站所)
+                // roleId = 1004, type=1;(1004是县信访室，转办给乡镇纪委管理员或者站所)
+                .getReportPerson(BaseApplication.prm == 1003 ? 0 : 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<HttpResultList<ReportpersonEntity>>() {
@@ -489,7 +492,7 @@ public class ReportPresenter implements ReportContract.Presenter {
                         if (httpResult.isSuccess()) {
                             if (type == 0) {//当前登录系统的用户是1003，乡镇纪委管理员，乡镇纪委管理员管理员进行转办的话，只能选择到村干部和站所
                                 mView.setPersonZB(httpResult.getResult(), id, text);
-                            } else {//当前登录系统的用户是1012，村干部，村干部进行转办的话，只能选择到乡镇纪委管理员和站所
+                            } else {//当前登录系统的用户是1012或者1004，村干部/社区书记，县信访室，村干部进行转办的话，只能选择到乡镇纪委管理员和站所
                                 mView.setPersonZB(httpResult.getResult(), id, text);
                             }
                         } else {
@@ -636,7 +639,10 @@ public class ReportPresenter implements ReportContract.Presenter {
     public void getMessagePerson(final String id, final String text) {
         Subscription subscription = AppUtils.provideRetrofit(BaseApplication.baseURL)
                 .create(ApiInterface.class)
-                .getReportPerson(BaseApplication.prm == 1003 ? 0 : 1)// 如果是1003，type=0,否则为1
+                // 如果是roleId = 1003，type=0;(1003是乡镇纪委管理员，转办给村干部或者站所)
+                // roleId = 1012, type=1;(1012是村干部/社区书记，转办给乡镇纪委管理员或者站所)
+                // roleId = 1004, type=1;(1004是县信访室，转办给乡镇纪委管理员或者站所)
+                .getReportPerson(BaseApplication.prm == 1003  ? 0 : 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<HttpResultList<ReportpersonEntity>>() {

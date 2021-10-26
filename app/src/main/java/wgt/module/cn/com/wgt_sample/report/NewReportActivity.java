@@ -60,7 +60,11 @@ public class NewReportActivity extends AppCompatActivity implements ReportContra
     @BindView(R.id.newreport_tovillagemgr)
     CheckBox newreportToVillageMgr;
 
+    //这是一个公用的MessageResult（上报给村干部/社区书记  和  上报给县信访室公用一个）
     private String toVillageMgrResult;
+
+    @BindView(R.id.newreport_tocountymgr)
+    CheckBox newreportToCountyMgr;
 
     @BindView(R.id.image_upload)
     TextView imageUpload;
@@ -225,6 +229,17 @@ public class NewReportActivity extends AppCompatActivity implements ReportContra
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     toVillageMgrResult=newreportToVillageMgr.getText().toString();
+                }else{
+                    toVillageMgrResult="";
+                }
+            }
+        });
+
+        newreportToCountyMgr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    toVillageMgrResult=newreportToCountyMgr.getText().toString();
                 }else{
                     toVillageMgrResult="";
                 }

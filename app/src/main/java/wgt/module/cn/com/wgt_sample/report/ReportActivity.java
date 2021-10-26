@@ -253,9 +253,9 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
                 dataDialog.show();
 
-                if(BaseApplication.prm==1003){//乡镇纪委管理员管理员进行转办的话，只能选择到村干部和站所
+                if(BaseApplication.prm==1003 ){//乡镇纪委管理员管理员进行转办的话，只能选择到村干部和站所
                     mPresenter.getReportPerson(0, id, text);
-                }else if(BaseApplication.prm==1012){//村干部进行转办的话，只能选择到乡镇纪委管理员管理员和站所
+                }else if(BaseApplication.prm==1012 || BaseApplication.prm==1004){//村干部/社区书记和县信访室进行转办的话，只能选择到乡镇纪委管理员管理员和站所
                     mPresenter.getReportPerson(1, id, text);
                 }else{//其他角色不能转办，没有转办按钮
                     //转办按钮隐藏
