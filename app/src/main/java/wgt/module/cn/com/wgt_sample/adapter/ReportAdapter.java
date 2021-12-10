@@ -52,10 +52,17 @@ public class ReportAdapter extends BaseAdapter<ReportAdapter.ViewHolder> {
             case 0:
                 holder.reportAdapterType.setText("待处理");
                 if (BaseApplication.prm == 1003 || BaseApplication.prm == 1004 || BaseApplication.prm == 1005 || BaseApplication.prm == 1012) {
-                    holder.reportAdapterJs.setVisibility(View.VISIBLE);
-                    holder.reportAdapterZhixiao.setVisibility(View.VISIBLE);
-                    holder.reportAdapterZhuanban.setVisibility(View.VISIBLE);
-                    holder.reportAdapterFinish.setVisibility(View.GONE);
+                    if (BaseApplication.userid.equals(data.getReceiveId())) {
+                        holder.reportAdapterJs.setVisibility(View.VISIBLE);
+                        holder.reportAdapterZhixiao.setVisibility(View.VISIBLE);
+                        holder.reportAdapterZhuanban.setVisibility(View.VISIBLE);
+                        holder.reportAdapterFinish.setVisibility(View.GONE);
+                    }else{
+                        holder.reportAdapterJs.setVisibility(View.GONE);
+                        holder.reportAdapterZhixiao.setVisibility(View.GONE);
+                        holder.reportAdapterZhuanban.setVisibility(View.GONE);
+                        holder.reportAdapterFinish.setVisibility(View.GONE);
+                    }
                 } else if( (BaseApplication.prm >=3000  && BaseApplication.prm<=3999)){
                     holder.reportAdapterZhixiao.setVisibility(View.GONE);
                     holder.reportAdapterZhuanban.setVisibility(View.GONE);
